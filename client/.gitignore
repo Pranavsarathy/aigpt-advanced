@@ -1,4 +1,13 @@
-# Logs
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# Build files
+dist/# Logs
 logs
 *.log
 npm-debug.log*

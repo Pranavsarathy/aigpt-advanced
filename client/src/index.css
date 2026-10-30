@@ -1,17 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
 
 :root {
-  --bg-color: #0f111a;
-  --sidebar-bg: rgba(18, 20, 28, 0.6);
-  --chat-bg: #0f111a;
-  --text-primary: #f0f0f5;
-  --text-secondary: #9496a8;
-  --accent-color: #6366f1;
-  --accent-hover: #4f46e5;
-  --user-msg-bg: #6366f1;
-  --ai-msg-bg: rgba(255, 255, 255, 0.05);
-  --border-color: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --bg-color: #040914; /* Deep dark blue aurora base */
+  --sidebar-bg: rgba(4, 9, 20, 0.4); /* Stronger glass transparency */
+  --chat-bg: transparent; /* Let the aurora shine through */
+  --text-primary: #f0f4f8;
+  --text-secondary: #8da4be;
+  --accent-color: #00d2ff; /* Aurora cyan */
+  --accent-hover: #3a7bd5; /* Aurora deep blue */
+  --user-msg-bg: rgba(0, 210, 255, 0.15); /* Glassy user message */
+  --ai-msg-bg: rgba(255, 255, 255, 0.03); /* Glassy AI message */
+  --border-color: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+body.light-mode {
+  --bg-color: #cbd5e1; /* Softer, muted slate background */
+  --sidebar-bg: rgba(255, 255, 255, 0.35); /* Softer glass */
+  --chat-bg: transparent; 
+  --text-primary: #334155; /* Softer dark text */
+  --text-secondary: #64748b;
+  --accent-color: #0ea5e9; 
+  --accent-hover: #0284c7; 
+  --user-msg-bg: rgba(14, 165, 233, 0.15); 
+  --ai-msg-bg: rgba(255, 255, 255, 0.25); /* Softer AI message glass */
+  --border-color: rgba(0, 0, 0, 0.04);
+  --glass-border: rgba(0, 0, 0, 0.05);
 }
 
 * {
@@ -163,8 +178,8 @@ body {
 /* Message Component */
 .message-container {
   display: flex;
-  gap: 1rem;
-  max-width: 80%;
+  gap: 1.5rem; /* ChatGPT uses more space between avatar and text */
+  max-width: 95%; /* Let text breathe */
   animation: slideUp 0.3s ease;
 }
 
@@ -197,20 +212,24 @@ body {
 .message-bubble {
   padding: 1rem 1.25rem;
   border-radius: 1.25rem;
-  line-height: 1.5;
-  font-size: 0.95rem;
+  line-height: 1.75; /* ChatGPT spacing */
+  font-size: 1rem; /* 16px ChatGPT size */
+  font-family: Söhne, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif;
+  color: var(--text-primary);
 }
 
 .user .message-bubble {
   background: var(--user-msg-bg);
-  color: #fff;
+  color: var(--text-primary);
   border-bottom-right-radius: 0.25rem;
+  padding: 0.75rem 1.25rem;
 }
 
 .ai .message-bubble {
-  background: var(--ai-msg-bg);
-  border: 1px solid var(--glass-border);
-  border-bottom-left-radius: 0.25rem;
+  background: transparent;
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /* Input Area */
@@ -644,3 +663,141 @@ body {
   font-size: 0.9rem;
   border: 1px solid rgba(239, 68, 68, 0.2);
 }
+  
+/* Cinematic Login Styles */  
+  
+/* Cinematic Login Styles */  
+html, body { font-family: 'Instrument Serif', serif; }  
+.system-ui { font-family: system-ui, sans-serif; }  
+@keyframes train-bob { 0%, 100% { transform: translateY(0) scale(1.03); } 50% { transform: translateY(-6px) scale(1.03); } }  
+.animate-train-bob { animation: train-bob 3s ease-in-out infinite; } 
+  
+.liquid-glass { background: rgba(255, 255, 255, 0.01); background-blend-mode: luminosity; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: none; box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1); position: relative; overflow: hidden; }  
+.liquid-glass::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1.4px; background: linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%, rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; } 
+
+/* Aurora Smoke Animations */
+.aurora-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  background-color: var(--bg-color);
+}
+
+.aurora-blob {
+  position: absolute;
+  filter: blur(80px);
+  opacity: 0.6;
+  border-radius: 50%;
+  animation: aurora-move 15s infinite alternate ease-in-out;
+}
+
+.aurora-1 {
+  width: 60vw;
+  height: 60vh;
+  background: radial-gradient(circle, rgba(0,210,255,0.4) 0%, rgba(0,0,0,0) 70%);
+  top: -10%;
+  left: -10%;
+  animation-duration: 25s;
+}
+
+.aurora-2 {
+  width: 70vw;
+  height: 70vh;
+  background: radial-gradient(circle, rgba(138,43,226,0.4) 0%, rgba(0,0,0,0) 70%);
+  bottom: -20%;
+  right: -10%;
+  animation-duration: 30s;
+  animation-delay: -5s;
+}
+
+.aurora-3 {
+  width: 50vw;
+  height: 50vh;
+  background: radial-gradient(circle, rgba(58,123,213,0.3) 0%, rgba(0,0,0,0) 70%);
+  top: 40%;
+  left: 30%;
+  animation-duration: 20s;
+  animation-delay: -10s;
+}
+
+@keyframes aurora-move {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate(10vw, -10vh) scale(1.1) rotate(45deg);
+  }
+  66% {
+    transform: translate(-5vw, 15vh) scale(0.9) rotate(-30deg);
+  }
+  100% {
+    transform: translate(-15vw, -5vh) scale(1.2) rotate(20deg);
+  }
+}
+
+/* Mobile Responsiveness */
+.mobile-menu-btn {
+  display: none !important;
+}
+
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 40;
+  backdrop-filter: blur(2px);
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex !important;
+  }
+  
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    z-index: 50;
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .mobile-overlay {
+    display: block;
+  }
+
+  .chat-page {
+    width: 100vw;
+  }
+
+  .chat-messages {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .message-container {
+    max-width: 100% !important;
+    gap: 0.75rem;
+  }
+
+  .input-container {
+    padding: 1rem;
+  }
+}
+
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+@keyframes shimmer { 0% { transform: translateX(-200%); } 100% { transform: translateX(300%); } }
+

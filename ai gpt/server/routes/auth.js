@@ -5,11 +5,18 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your_super_secret_jwt_key_here';
+const DISABLE_MONGODB = process.env.DISABLE_MONGODB === 'true';
 
 // Register Route
 router.post('/register', async (req, res) => {
   try {
     const { email, password } = req.body;
+    
+    if (DISABLE_MONGODB) {
+      // Mock registration when MongoDB is disabled
+      const mockToken = jwt.sign({ user: { id: 'mock_user_id' } }, JWT_SECRET, { expiresIn: '5h' });
+      return res.json({ message: 'User registered successfully (mock mode)', token: mockToken, userId: 'mock_user_id' });
+    }
     
     // Check if user exists
     let user = await User.findOne({ email });
@@ -36,6 +43,12 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
+    
+    if (DISABLE_MONGODB) {
+      // Mock login when MongoDB is disabled
+      const mockToken = jwt.sign({ user: { id: 'mock_user_id' } }, JWT_SECRET, { expiresIn: '5h' });
+      return res.json({ token: mockToken, userId: 'mock_user_id' });
+    }
     
     // Check if user exists
     const user = await User.findOne({ email });
